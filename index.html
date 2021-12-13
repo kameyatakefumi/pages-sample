@@ -39,10 +39,10 @@ req.onload = () => {
         for (let i = 0; i < line.length - 1; ++i) {
             const cells = line[i].split(",");
             csvlabel.push(cells[0]);
+            csvdata.push(cells[1]);
         }
         alert(csvlabel);
-    } else {
-        alert('FALSE');
+        alert(csvdata);
     }
 }
 
