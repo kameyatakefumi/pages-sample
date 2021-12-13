@@ -7,6 +7,8 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+const csvlabel = [], csvdata = [];
+
 const labels = [
   'January',
   'February',
@@ -36,16 +38,9 @@ req.onload = () => {
         const datas = [];
         for (let i = 0; i < line.length - 1; ++i) {
             const cells = line[i].split(",");
-            datas.push(cells);
-            alert(line[i]);
+            csvlabel.push(cells[0]);
         }
-        /*
-        for (let row in data) {
-            label.push(timeUnix(data[row][0], data[row][1]));
-            num.push(data[row][2]);
-            ct.push(data[row][3]);
-        }
-        */
+        alert(csvlabel);
     } else {
         alert('FALSE');
     }
