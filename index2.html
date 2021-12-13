@@ -1,0 +1,53 @@
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<!--
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dkCPkLmU7l4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+-->
+<iframe width="480" height="270" src="//www.youtube.com/embed/dkCPkLmU7l4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+<script>
+const label = [], num = [];
+ 
+const req = new XMLHttpRequest();
+req.open("GET", "../csv/data.csv", true);
+req.send(null);
+ 
+req.onload = () => {
+    if (req.status != 404) {
+        const line = req.responseText.split("\n");
+        const data = [];
+        for (let i = 0; i < line.length - 1; ++i) {
+            const cells = line[i].split(",");
+            data.push(cells);
+        }
+        for (let row in data) {
+            label.push(data[row][0]);
+            num.push(data[row][1]);
+        }
+    }
+}
+ 
+const conf = {
+    type: 'line',
+    data: {
+        labels: label,
+        datasets: [{
+            label: '‘Ìd',
+            data: num,
+            borderColor: "rgba(50,205,50,0.8)",
+            backgroundColor: "rgba(50,255,50,0.8)",
+            fill: false,
+            lineTension: 0,
+        },],
+    },
+};
+ 
+const myChart3 = new Chart(document.getElementById('myChart').getContext('2d'), conf);
+</script>
+</body>
+</html>
