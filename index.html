@@ -7,7 +7,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-const csvlabel = [], csvdata = [];
+const csvlabels = [], csvdata = [];
 
 const labels = [
   'January',
@@ -38,11 +38,9 @@ req.onload = () => {
         const datas = [];
         for (let i = 0; i < line.length - 1; ++i) {
             const cells = line[i].split(",");
-            csvlabel.push(cells[0]);
+            csvlabels.push(cells[0]);
             csvdata.push(cells[1]);
         }
-        alert(csvlabel);
-        alert(csvdata);
     }
 }
 
@@ -51,9 +49,27 @@ const config = {
   data: data,
   options: {}
 };
+
+
+const csvdatas = {
+  labels: csvlabels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: csvdata,
+  }]
+};
+
+const csvconfig = {
+  type: 'line',
+  data: csvdatas,
+  options: {}
+};
+
 const myChart = new Chart(
   document.getElementById('myChart'),
-  config
+  csvconfig
 );
 </script>
 </body>
