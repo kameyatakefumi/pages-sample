@@ -34,12 +34,12 @@ req.onload = () => {
     if (req.status != 404) {
         const line = req.responseText.split("\n");
         const datas = [];
-        alert('TRUE');
-        /*
         for (let i = 0; i < line.length - 1; ++i) {
             const cells = line[i].split(",");
-            data.push(cells);
+            datas.push(cells);
+            alert(line[i]);
         }
+        /*
         for (let row in data) {
             label.push(timeUnix(data[row][0], data[row][1]));
             num.push(data[row][2]);
