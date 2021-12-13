@@ -1,0 +1,65 @@
+<html>
+<head>
+</head>
+<body>
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+  }]
+};
+
+
+const req = new XMLHttpRequest();
+req.open("GET", "./csv/data.csv", true);
+req.send(null);
+
+req.onload = () => {
+    if (req.status != 404) {
+        const line = req.responseText.split("\n");
+        const datas = [];
+        alert('TRUE');
+        /*
+        for (let i = 0; i < line.length - 1; ++i) {
+            const cells = line[i].split(",");
+            data.push(cells);
+        }
+        for (let row in data) {
+            label.push(timeUnix(data[row][0], data[row][1]));
+            num.push(data[row][2]);
+            ct.push(data[row][3]);
+        }
+        */
+    } else {
+        alert('FALSE');
+    }
+}
+
+const config = {
+  type: 'line',
+  data: data,
+  options: {}
+};
+const myChart = new Chart(
+  document.getElementById('myChart'),
+  config
+);
+</script>
+</body>
+</html>
