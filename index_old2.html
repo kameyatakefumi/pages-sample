@@ -1,0 +1,76 @@
+<html>
+<head>
+</head>
+<body>
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const csvlabels = [], csvdata = [];
+
+const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+  }]
+};
+
+
+const req = new XMLHttpRequest();
+req.open("GET", "./csv/data.csv", true);
+req.send(null);
+
+req.onload = () => {
+    if (req.status != 404) {
+        const line = req.responseText.split("\n");
+        const datas = [];
+        for (let i = 0; i < line.length - 1; ++i) {
+            const cells = line[i].split(",");
+            csvlabels.push(cells[0]);
+            csvdata.push(cells[1]);
+        }
+    }
+}
+
+const config = {
+  type: 'line',
+  data: data,
+  options: {}
+};
+
+
+const csvdatas = {
+  labels: csvlabels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: csvdata,
+  }]
+};
+
+const csvconfig = {
+  type: 'line',
+  data: csvdatas,
+  options: {}
+};
+
+const myChart = new Chart(
+  document.getElementById('myChart'),
+  csvconfig
+);
+</script>
+</body>
+</html>
