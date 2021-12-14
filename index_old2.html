@@ -69,7 +69,7 @@ const csvconfig = {
     events: ['click'],
     onClick: function (e, el) {
       if (! el || el.length === 0) return;
-      alert('onClick : label ');
+      alert('onClick : label ' + el[0].index);
     }
   }
 };
