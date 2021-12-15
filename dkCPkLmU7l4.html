@@ -47,7 +47,7 @@ const config = {
     events: ['click'],
     onClick: function (e, el) {
       if (! el || el.length === 0) return;
-      document.getElementById('yIframe').src = yUrl + "?start=" + el[0].index
+      document.getElementById('yIframe').src = yUrl + "?start=" + (60 * el[0].index)
     }
   }
 };
