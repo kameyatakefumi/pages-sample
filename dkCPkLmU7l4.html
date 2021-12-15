@@ -7,12 +7,13 @@
 </head>
 <body>
 <div style="text-align: center;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/dkCPkLmU7l4?start=29" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe id="yIframe" width="560" height="315" src="https://www.youtube.com/embed/dkCPkLmU7l4?start=29" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 <div>
-  <canvas id="myChart"></canvas>
+  <canvas id="cChart"></canvas>
 </div>
 <script>
+const yUrl = "https://www.youtube.com/embed/dkCPkLmU7l4"
 const labels = [], values = [];
 
 const xhr = new XMLHttpRequest();
@@ -25,7 +26,7 @@ xhr.onload = function() {
       labels.push(items[0]);
       values.push(items[1]);
     }
-    myChart.update();
+    cChart.update();
   }
 }
 xhr.send(null);
@@ -46,13 +47,17 @@ const config = {
     events: ['click'],
     onClick: function (e, el) {
       if (! el || el.length === 0) return;
-      alert('onClick : label ' + el[0].index);
+      
+      alert(document.getElementById('yIframe').src);
+      
+      //document.getElementById('yIframe').src = yUrl + "?start=" + el[0].index
+      
     }
   }
 };
 
-const myChart = new Chart(
-  document.getElementById('myChart'),
+const cChart = new Chart(
+  document.getElementById('cChart'),
   config
 );
 
