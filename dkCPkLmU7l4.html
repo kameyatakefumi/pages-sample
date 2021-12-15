@@ -7,7 +7,7 @@
 </head>
 <body>
 <div style="text-align: center;">
-  <iframe id="yIframe" width="560" height="315" src="https://www.youtube.com/embed/dkCPkLmU7l4?start=29" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe id="yIframe" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 <div>
   <canvas id="cChart"></canvas>
@@ -47,11 +47,7 @@ const config = {
     events: ['click'],
     onClick: function (e, el) {
       if (! el || el.length === 0) return;
-      
-      alert(document.getElementById('yIframe').src);
-      
-      //document.getElementById('yIframe').src = yUrl + "?start=" + el[0].index
-      
+      document.getElementById('yIframe').src = yUrl + "?start=" + el[0].index
     }
   }
 };
@@ -61,8 +57,10 @@ const cChart = new Chart(
   config
 );
 
-var str = window.location.href.split('/').pop().replace(".html", "");
-alert(str);
+document.getElementById('yIframe').src = yUrl;
+
+// var str = window.location.href.split('/').pop().replace(".html", "");
+// alert(str);
 </script>
 </body>
 </html>
