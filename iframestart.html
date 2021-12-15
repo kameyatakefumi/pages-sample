@@ -1,11 +1,14 @@
+<!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <title>TEST</title>
 </head>
 <body>
-<div>
-<!-- <iframe width="480" height="270" src="//www.youtube.com/embed/dkCPkLmU7l4?start=29" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-<!-- パラメータに autoplay=1&mute=1 を付与してもミュートでの自動再生のため、そこまで便利じゃない -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dkCPkLmU7l4?start=29" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div style="text-align: center;">
+  <!-- <iframe width="480" height="270" src="//www.youtube.com/embed/dkCPkLmU7l4?start=29" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+  <!-- パラメータに autoplay=1&mute=1 を付与してもミュートでの自動再生のため、そこまで便利じゃない -->
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/dkCPkLmU7l4?start=29" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 <div>
   <canvas id="myChart"></canvas>
@@ -83,6 +86,11 @@ const myChart = new Chart(
   document.getElementById('myChart'),
   csvconfig
 );
+
+//var str = window.location.href.split('/').pop();
+//alert(str);
+
+
 </script>
 </body>
 </html>
