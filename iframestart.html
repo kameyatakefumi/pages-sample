@@ -1,0 +1,90 @@
+<html>
+<head>
+</head>
+<body>
+<div>
+<iframe width="480" height="270" src="//www.youtube.com/embed/dkCPkLmU7l4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="480" height="270" src="//www.youtube.com/embed/dkCPkLmU7l4&start=105" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const csvlabels = [], csvdata = [];
+
+const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+  }]
+};
+
+
+const req = new XMLHttpRequest();
+req.open("GET", "./csv/tokinosora.csv", true);
+req.send(null);
+
+req.onload = () => {
+    if (req.status != 404) {
+        const line = req.responseText.split("\n");
+        const datas = [];
+        for (let i = 0; i < line.length - 1; ++i) {
+            const cells = line[i].split(",");
+            csvlabels.push(cells[0]);
+            csvdata.push(cells[1]);
+        }
+        myChart.update();
+    }
+}
+
+const config = {
+  type: 'line',
+  data: data,
+  options: {}
+};
+
+
+const csvdatas = {
+  labels: csvlabels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: csvdata,
+  }]
+};
+
+const csvconfig = {
+  type: 'line',
+  data: csvdatas,
+  options: {
+    events: ['click'],
+    onClick: function (e, el) {
+      if (! el || el.length === 0) return;
+      alert('onClick : label ' + el[0].index);
+    }
+  }
+};
+
+const myChart = new Chart(
+  document.getElementById('myChart'),
+  csvconfig
+);
+</script>
+</body>
+</html>
+<!-- https://www.chartjs.org/docs/2.8.0/general/interactions/events.html -->
+<!-- https://tr.you84815.space/chartjs/general/interactions/events.html -->
+<!-- https://dekiru.net/article/15155/ -->
