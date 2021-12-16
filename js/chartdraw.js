@@ -1,7 +1,9 @@
 const labels = [], values = [];
 
+const csvPath = './' + vId + '.csv'
+
 const xhr = new XMLHttpRequest();
-xhr.open("GET", './data.csv', true);
+xhr.open("GET", csvPath, true);
 xhr.onload = function() {
   if (xhr.status == 200) {
     const lines = xhr.responseText.split(/\r\n|\n/);
